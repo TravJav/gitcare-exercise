@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",  // Use modern JSX transform for React 17+
+    "baseUrl": "./",  // Set the base URL to the root of your project
+    "paths": {
+      "@/*": ["src/*"]  // Aliases for cleaner imports (e.g., @/components/MyComponent)
+    },
+    "module": "esnext",  // Modern module system (esnext allows better tree-shaking)
+    "target": "es2020",  // Compile to modern JavaScript (compatible with most modern browsers)
+    "moduleResolution": "node",  // Node-style module resolution for React imports
+    "esModuleInterop": true,  // Allow default imports from CommonJS modules
+    "allowSyntheticDefaultImports": true,  // For default import support
+    "strict": true,  // Enable strict type-checking options
+    "skipLibCheck": true,  // Skip type checking of declaration files to speed up compilation
+    "resolveJsonModule": true,  // Allow importing JSON files as modules
+    "isolatedModules": true  // Ensure each file is treated as an isolated module (required for Vite)
+  }
+}
