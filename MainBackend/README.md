@@ -1,5 +1,8 @@
 # API backend
 
+The scaffolding of this project comes from my own app I created running on a AWS app-runner
+I used this to speed up development time. https://github.com/TravJav/MainBackend ( owned by myself )
+
 ## Swagger / Opean API  openapi.yaml
 
 
