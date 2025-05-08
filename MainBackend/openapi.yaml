@@ -1,0 +1,88 @@
+openapi: 3.0.0
+info:
+  title: Credit Card Validation API
+  version: 1.0.0
+  description: API for validating credit card numbers using the Luhn algorithm and a health check endpoint.
+
+paths:
+  /validate/card:
+    post:
+      summary: Validate a credit card number.
+      description: Accepts a credit card number and validates it using the Luhn algorithm.
+      operationId: validateCard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cardNumber:
+                  type: string
+                  description: The credit card number to be validated (digits only).
+                  example: "4111111111111111"
+      responses:
+        '200':
+          description: Credit card validation result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A message related to the result.
+                    example: ""
+                  title:
+                    type: string
+                    description: A title for the response.
+                    example: "Credit Card Validation."
+                  cardNumberValid:
+                    type: boolean
+                    description: Whether the card number is valid according to the Luhn algorithm.
+                    example: true
+        '400':
+          description: Bad request, such as missing or invalid card number.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message.
+                    example: "Card number is required."
+                  title:
+                    type: string
+                    description: Title for the error response.
+                    example: "Validation Error"
+                  cardNumberValid:
+                    type: boolean
+                    description: Always false on error.
+                    example: false
+
+  /api:
+    get:
+      summary: API Health Check.
+      description: Used to validate if the server is running and available. This endpoint is often used by services like AWS App Runner.
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Server is running as expected.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The message indicating the server status.
+                    example: "Server is running as expected. Only user authenticated requests are permitted"
+                  status:
+                    type: boolean
+                    description: The health status of the server.
+                    example: true
+                  title:
+                    type: string
+                    description: The title for the health check response.
+                    example: "Alive"

@@ -1,0 +1,30 @@
+version: "3.5"
+
+services:
+
+  mainbackend:
+    build: .
+    image: mainbackend:latest
+
+    ports:
+      - '4320:4320'
+    networks:
+      - my_network
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: health-database
+      DB_PORT: 5432
+
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

@@ -1,0 +1,18 @@
+databaseChangeLog:
+- changeSet:
+    id: 1656972439890-1
+    author: travis (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(500)
+        tableName: users
