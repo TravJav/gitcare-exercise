@@ -76,4 +76,7 @@ bash ```
   npx jest 
 ```
   
+  # Notes
+
+  This backend is full dockerized as mentioned, it doesn't have any DB hooked up but we do define a service in the docker compose, I normally use liquibase to manage my DB changes but have used Alembic in the past as well. In the case of if we created a auth endpoint it differs on which route we'd want to take e.g server-side managed JWT or a provider like Descope, in the case of we managing the jwt, we'd just sign it with a secret and we'd sign the JWT and pass it back to the client once we have performed the checksum of the hash in the password col in the users table ( for an example ) true = we issue a token that expires in X hours, false = they dont get a toke, token will be included in the cookies and we'd extract it from the request to validate its signature authenticity. In the case of Descope we would have a project ID and they would do the validation for us. Ideally all our endpoints asides from opur /status and login would be protected, potentially a few others. Includes the status endpoint in here for sanity checks but also many services like AWS app-runner require it for health checks and since the boilerplate of this app is running on a aws-server now I just left it in as a util. 
   

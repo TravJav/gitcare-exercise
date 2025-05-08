@@ -67,3 +67,6 @@ Use Node version 20 via npm.
 <nvm use 20> if not available download the target node version
 
 
+# Notes
+
+What the front-end needs to actually be a functioning app? JWT management is required to be a secure app with all the authentication that goes with it. The JWT independent of how its managed ( server managed or services provider e.g Descope) will need to go into the cookies and be configured to be sent on the request using a Axios interceptor of the equivelent with whatever other http requests lib that the project is employing. In addition to that it will need a Provider or useContext which will wrap all the child components that would want to use the axios interceptor so we dont need to keep re-configuring the interceptor or request headers. Application should be aware of the auth state as well and inside the http provider file we should handle the 401's and 403's properly which is normally dependent on business context in the case of the 403 it may be user roles etc.
